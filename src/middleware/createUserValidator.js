@@ -28,7 +28,10 @@ module.exports = app.use(
       max: 50,
     })
     .isString(),
-  body('bio').isLength({ max: 255 }).isString(),
+  body('bio')
+    .optional({ checkFalsy: true })
+    .isLength({ min: 0, max: 255 })
+    .isString(),
   body('phoneNumber')
     .exists()
     .isLength({
@@ -38,6 +41,13 @@ module.exports = app.use(
     .isString(),
   (req, res, next) => {
     const errors = validationResult(req);
+
+    // If Bio not exist then assign to empty string
+    if (req.body.bio === undefined) {
+      req.body.bio = '';
+    }
+
+    // If error in body request
     if (!errors.isEmpty()) {
       res
         .status(400)

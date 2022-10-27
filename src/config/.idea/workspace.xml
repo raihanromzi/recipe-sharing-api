@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c743ade-e737-4665-b52c-c094a8e1702a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../middleware/createUserValidator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../routes/user/createUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../requirements/apicontract_recipeapi.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/../.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6673c378-89bc-416d-9869-9bdda5cbb57b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6673c378-89bc-416d-9869-9bdda5cbb57b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/response.js" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/response.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../middleware/createUserValidator.js" beforeDir="false" afterPath="$PROJECT_DIR$/../middleware/createUserValidator.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,7 +1,7 @@
 ### Node template
 # Logs
 ../.idea
-./config/.idea
+src/config/.idea
 logs
 *.log
 npm-debug.log*
