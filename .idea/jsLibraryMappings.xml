@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="PROJECT" libraries="{@types/eslint, @types/eslint-config-prettier, @types/express, @types/jest, @types/jsonwebtoken, @types/mysql, @types/nanoid-dictionary, @types/prettier, @types/supertest}" />
+    <includedPredefinedLibrary name="HTTP Response Handler" />
+    <includedPredefinedLibrary name="Node.js Core" />
+  </component>
+</project>
