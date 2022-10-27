@@ -14,4 +14,7 @@ const responseError = (code, status, error) =>
     errors: error,
   });
 
-module.exports = { responseSuccess, responseError };
+module.exports = {
+  responseSuccess,
+  responseError,
+};

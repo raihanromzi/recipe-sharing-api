@@ -1,15 +1,12 @@
-CREATE
-    DATABASE recipe_db;
+CREATE DATABASE recipe_db;
 
-DROP
-    DATABASE recipe_db;
+DROP DATABASE recipe_db;
 
-USE
-    recipe_db;
+USE recipe_db;
 
 CREATE TABLE Registered_User
 (
-    Username     VARCHAR(20) PRIMARY KEY NOT NULL,
+    Username     VARCHAR(50) PRIMARY KEY NOT NULL,
     Password     VARCHAR(16)             NOT NULL,
     Firstname    VARCHAR(20)             NOT NULL,
     Lastname     VARCHAR(20)             NOT NULL,

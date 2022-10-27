@@ -8,10 +8,27 @@ module.exports = {
   overrides: [],
   parserOptions: {
     parser: 'babel-eslint',
-    ecmaVersion: 8,
+    ecmaVersion: 9,
     sourceType: 'module',
   },
   rules: {
+    // 'object-shorthand': ['error', 'never'],
     'prettier/prettier': ['error'],
+    'prefer-destructuring': [
+      'error',
+      {
+        VariableDeclarator: {
+          array: false,
+          object: true,
+        },
+        AssignmentExpression: {
+          array: true,
+          object: false,
+        },
+      },
+      {
+        enforceForRenamedProperties: false,
+      },
+    ],
   },
 };
