@@ -1,9 +1,9 @@
-const express = require('express');
-const response = require('../../utils/response');
-const userValidator = require('../../middleware/createUserValidator');
-const db = require('../../config/db');
+const express = require('express')
+const response = require('../../utils/response')
+const userValidator = require('../../middleware/createUserValidator')
+const db = require('../../config/db')
 
-const router = express.Router();
+const router = express.Router()
 module.exports = router.post('/users', userValidator, (req, res) => {
   try {
     const {
@@ -14,16 +14,16 @@ module.exports = router.post('/users', userValidator, (req, res) => {
       address,
       bio,
       phoneNumber,
-    } = req.body;
+    } = req.body
 
     const query = `INSERT INTO Registered_User (Username, Password, FirstName, LastName, Address, Bio, Phone_Number)
                    VALUES ('${username}', '${password}', '${firstName}', '${lastName}', '${address}', '${bio}',
-                           '${phoneNumber}')`;
+                           '${phoneNumber}')`
     db.query(query, (err) => {
       if (err) {
         res
           .status(500)
-          .send(response.responseError(500, 'SERVER ERROR', { err }));
+          .send(response.responseError(500, 'SERVER ERROR', { err }))
       } else {
         res.status(201).send(
           response.responseSuccess(201, 'CREATED', {
@@ -35,9 +35,9 @@ module.exports = router.post('/users', userValidator, (req, res) => {
             bio,
             phoneNumber,
           }),
-        );
+        )
       }
-    });
+    })
   } catch (e) {
     res
       .status(500)
@@ -47,6 +47,6 @@ module.exports = router.post('/users', userValidator, (req, res) => {
           'SERVER ERROR',
           'Please Wait Server Error',
         ),
-      );
+      )
   }
-});
+})
