@@ -2,10 +2,6 @@
 # Logs
 logs
 .idea
-src/.idea
-src/.env
-src/.eslintrc.js
-src/.prettierrc
 src/config/.idea
 *.log
 npm-debug.log*
