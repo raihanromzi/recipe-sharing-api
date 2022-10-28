@@ -1,11 +1,26 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const response = require('../utils/response');
+const db = require('../config/db');
 
 const app = express();
 
 module.exports = app.use(
-  body('username').exists().isEmail().isString(),
+  body('username').exists().isLength({ min: 3, max: 16 }).isString(),
+  body('email')
+    .exists()
+    .isString()
+    .isEmail()
+    .normalizeEmail()
+    .custom(async (email) => {
+      const query = `SELECT *
+                     FROM Registered_User
+                     WHERE Email = '${email}'`;
+      const existingEmail = await db.promise().query(query);
+      if (existingEmail[0].length !== 0) {
+        throw new Error('Email already in use');
+      }
+    }),
   body('password')
     .exists()
     .isLength({
@@ -51,13 +66,7 @@ module.exports = app.use(
     if (!errors.isEmpty()) {
       res
         .status(400)
-        .send(
-          response.responseError(
-            '400 ',
-            'BAD_REQUEST',
-            'Request Body Not Correct',
-          ),
-        );
+        .send(response.responseError('400 ', 'BAD_REQUEST', errors));
       return;
     }
     next();
