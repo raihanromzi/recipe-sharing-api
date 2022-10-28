@@ -7,6 +7,7 @@ const app = express();
 const welcomeAPIRouter = require('./routes/home/welcome-api');
 const createUser = require('./routes/user/createUser');
 const getAllUsers = require('./routes/user/getAllUsers');
+const getUser = require('./routes/user/getUser');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -15,7 +16,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', welcomeAPIRouter);
-app.use('/api', createUser);
-app.use('/api', getAllUsers);
+app.use('/api/v1/', createUser);
+app.use('/api/v1/', getAllUsers);
+app.use('/api/v1/', getUser);
 
 module.exports = app;
