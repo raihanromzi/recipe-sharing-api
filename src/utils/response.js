@@ -4,14 +4,14 @@ const responseSuccess = (code, status, data) =>
   cleanObj({
     code,
     status,
-    data: [data],
+    data,
   });
 
-const responseError = (code, status, error) =>
+const responseError = (code, status, errors) =>
   cleanObj({
     code,
     status,
-    errors: error,
+    message: errors,
   });
 
 module.exports = {
