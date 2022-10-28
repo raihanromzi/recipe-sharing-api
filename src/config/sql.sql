@@ -24,8 +24,9 @@ CREATE TABLE Recipe
     Title        VARCHAR(50)     NOT NULL,
     Description  VARCHAR(300)    NOT NULL,
     Cook_Time    INT             NOT NULL,
-    Ingredients  VARCHAR(500)    NOT NULL,
-    Step_By_Step VARCHAR(500)    NOT NULL
+    Ingredients  JSON            NOT NULL,
+    Step_By_Step JSON            NOT NULL,
+    Added_Date   DATETIME DEFAULT NOW()
 );
 
 SELECT *

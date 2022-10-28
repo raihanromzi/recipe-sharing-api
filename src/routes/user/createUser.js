@@ -1,6 +1,6 @@
 const express = require('express');
 const response = require('../../utils/response');
-const userValidator = require('../../middleware/createUserValidator');
+const userValidator = require('../../middleware/userValidator');
 const db = require('../../config/db');
 
 const router = express.Router();
