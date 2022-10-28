@@ -18,14 +18,6 @@ module.exports = router.get('/users', async (req, res) => {
 
     res.status(200).send(response.responseSuccess('200', 'OK', results[0]));
   } catch (e) {
-    res
-      .status(500)
-      .send(
-        response.responseError(
-          '500',
-          'SERVER ERROR',
-          'Please Wait Server Error',
-        ),
-      );
+    res.status(500).send(response.responseError('500', 'SERVER ERROR', e));
   }
 });
