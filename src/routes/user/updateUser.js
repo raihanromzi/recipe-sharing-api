@@ -1,5 +1,5 @@
 const express = require('express');
-const userExist = require('../../middleware/userExistValidator');
+const { param, validationResult } = require('express-validator');
 const response = require('../../utils/response');
 const userUpdateValidator = require('../../middleware/userUpdateValidator');
 const db = require('../../config/db');
@@ -8,9 +8,24 @@ const router = express.Router();
 
 module.exports = router.put(
   '/users/:username',
-  userExist,
+  param('username').custom(async (username) => {
+    const query = `SELECT *
+                   FROM Registered_User
+                   WHERE Username = '${username}'`;
+    const existingUsername = await db.promise().query(query);
+    if (existingUsername[0].length === 0) {
+      throw new Error('User Not Found');
+    }
+  }),
   userUpdateValidator,
   async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res
+        .status(400)
+        .send(response.responseError('400 ', 'BAD_REQUEST', errors));
+      return;
+    }
     try {
       const { username } = req.params;
       const { firstName, lastName, address, bio, phoneNumber } = req.body;

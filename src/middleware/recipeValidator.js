@@ -5,15 +5,6 @@ const db = require('../config/db');
 
 const app = express();
 module.exports = app.use(
-  param('username').custom(async (username) => {
-    const query = `SELECT *
-                   FROM Registered_User
-                   WHERE Username = '${username}'`;
-    const existingEmail = await db.promise().query(query);
-    if (existingEmail[0].length !== 0) {
-      throw new Error('username not in exist');
-    }
-  }),
   body('title').exists().isString().isLength({
     min: 5,
     max: 50,

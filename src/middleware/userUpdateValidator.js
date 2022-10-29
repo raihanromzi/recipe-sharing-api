@@ -1,7 +1,6 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const response = require('../utils/response');
-const db = require('../config/db');
 
 const app = express();
 

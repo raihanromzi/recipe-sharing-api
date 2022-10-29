@@ -1,5 +1,5 @@
 const express = require('express');
-const userExist = require('../../middleware/userExistValidator');
+const { param } = require('express-validator');
 const response = require('../../utils/response');
 const db = require('../../config/db');
 
@@ -7,7 +7,15 @@ const router = express.Router();
 
 module.exports = router.get(
   '/users/:username/recipes',
-  userExist,
+  param('username').custom(async (username) => {
+    const query = `SELECT COUNT(*)
+                   FROM Registered_User
+                   WHERE Username = '${username}'`;
+    const existingUsername = await db.promise().query(query);
+    if (existingUsername[0].length === 0) {
+      throw new Error('User Not Found');
+    }
+  }),
   async (req, res) => {
     try {
       const { username } = req.params;
