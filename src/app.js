@@ -9,6 +9,9 @@ const createUser = require('./routes/user/createUser');
 const getAllUsers = require('./routes/user/getAllUsers');
 const getUser = require('./routes/user/getUser');
 const createRecipe = require('./routes/Recipe/createRecipe');
+const deleteUser = require('./routes/user/deleteUser');
+const getAllRecipesUser = require('./routes/Recipe/getAllRecipesUser');
+const updateUser = require('./routes/user/updateUser');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -21,5 +24,8 @@ app.use('/api/v1/', createUser);
 app.use('/api/v1/', getAllUsers);
 app.use('/api/v1/', getUser);
 app.use('/api/v1/', createRecipe);
+app.use('/api/v1/', deleteUser);
+app.use('/api/v1/', getAllRecipesUser);
+app.use('/api/v1/', updateUser);
 
 module.exports = app;

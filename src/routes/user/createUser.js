@@ -43,6 +43,6 @@ module.exports = router.post('/users', userValidator, (req, res) => {
       }
     });
   } catch (e) {
-    res.status(500).send(response.responseError('500', 'SERVER ERROR', e));
+    res.status(500).send(response.responseError('500', 'SERVER ERROR', { e }));
   }
 });
