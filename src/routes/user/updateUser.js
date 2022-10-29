@@ -8,17 +8,23 @@ const router = express.Router();
 
 module.exports = router.put(
   '/users/:username',
-  param('username').custom(async (username) => {
-    const query = `SELECT *
-                   FROM Registered_User
-                   WHERE Username = '${username}'`;
-    const existingUsername = await db.promise().query(query);
-    if (existingUsername[0].length === 0) {
-      throw new Error('User Not Found');
-    }
-  }),
   userUpdateValidator,
+
+  // Check is username exist in db
+  param('username')
+    .exists()
+    .custom(async (username) => {
+      const query = `SELECT COUNT(*)
+                     FROM Registered_User
+                     WHERE Username = '${username}'`;
+      const result = await db.promise().query(query);
+      if (result[0][0]['COUNT(*)'] === 0) {
+        throw new Error('Username Not Found');
+      }
+    }),
+
   async (req, res) => {
+    // if username not exist throw response error
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res
@@ -26,6 +32,7 @@ module.exports = router.put(
         .send(response.responseError('400 ', 'BAD_REQUEST', errors));
       return;
     }
+
     try {
       const { username } = req.params;
       const { firstName, lastName, address, bio, phoneNumber } = req.body;

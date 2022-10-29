@@ -1,7 +1,6 @@
 const express = require('express');
-const { param, body, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 const response = require('../utils/response');
-const db = require('../config/db');
 
 const app = express();
 module.exports = app.use(
@@ -21,6 +20,8 @@ module.exports = app.use(
   body('stepByStep').exists().isObject(),
   (req, res, next) => {
     const errors = validationResult(req);
+
+    // If error in body request
     if (!errors.isEmpty()) {
       res
         .status(400)

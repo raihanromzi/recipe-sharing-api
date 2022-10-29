@@ -11,11 +11,11 @@ module.exports = app.use(
     .isLength({ min: 3, max: 16 })
     .isString()
     .custom(async (username) => {
-      const query = `SELECT *
+      const query = `SELECT COUNT(*)
                      FROM Registered_User
                      WHERE Username = '${username}'`;
-      const existingUsername = await db.promise().query(query);
-      if (existingUsername[0].length !== 0) {
+      const result = await db.promise().query(query);
+      if (result[0][0]['COUNT(*)'] !== 0) {
         throw new Error('Username already in use');
       }
     }),
@@ -25,11 +25,11 @@ module.exports = app.use(
     .isEmail()
     .normalizeEmail()
     .custom(async (email) => {
-      const query = `SELECT *
+      const query = `SELECT COUNT(*)
                      FROM Registered_User
                      WHERE Email = '${email}'`;
-      const existingEmail = await db.promise().query(query);
-      if (existingEmail[0].length !== 0) {
+      const result = await db.promise().query(query);
+      if (result[0][0]['COUNT(*)'] !== 0) {
         throw new Error('Email already in use');
       }
     }),

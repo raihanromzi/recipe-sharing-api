@@ -12,7 +12,7 @@ module.exports = router.get('/users', async (req, res) => {
     if (results[0].length === 0) {
       res
         .status(404)
-        .send(response.responseError('404', ' NOT_FOUND', 'User Not Found'));
+        .send(response.responseError('404', ' NOT_FOUND', 'Users Not Found'));
       return;
     }
 

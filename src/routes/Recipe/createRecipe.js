@@ -1,5 +1,5 @@
 const express = require('express');
-const { param } = require('express-validator');
+const { param, validationResult } = require('express-validator');
 const response = require('../../utils/response');
 const recipeValidator = require('../../middleware/recipeValidator');
 const db = require('../../config/db');
@@ -8,26 +8,38 @@ const router = express.Router();
 module.exports = router.post(
   '/users/:username/recipes',
   recipeValidator,
+
+  // Check is username exist in db
   param('username')
     .exists()
     .custom(async (username) => {
-      const query = `SELECT *
-                   FROM Registered_User
-                   WHERE Username = '${username}'`;
-      const existingEmail = await db.promise().query(query);
-      if (existingEmail[0].length === 0) {
-        throw new Error('username not in exist');
+      const query = `SELECT COUNT(*)
+                     FROM Registered_User
+                     WHERE Username = '${username}'`;
+      const result = await db.promise().query(query);
+      if (result[0][0]['COUNT(*)'] === 0) {
+        throw new Error('Username Not Found');
       }
     }),
+
   (req, res) => {
+    // if username not exist throw response error
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res
+        .status(400)
+        .send(response.responseError('400 ', 'BAD_REQUEST', errors));
+      return;
+    }
+
     try {
       const { username } = req.params;
       const { title, description, cookTime, ingredients, stepByStep } =
         req.body;
       const query = `INSERT INTO Recipe (Username, Title, Description, Cook_Time, Ingredients, Step_By_Step)
-                   VALUES ('${username}', '${title}', '${description}', '${cookTime}',
-                           '${JSON.stringify(ingredients)}',
-                           '${JSON.stringify(stepByStep)}')`;
+                     VALUES ('${username}', '${title}', '${description}', '${cookTime}',
+                             '${JSON.stringify(ingredients)}',
+                             '${JSON.stringify(stepByStep)}')`;
       db.query(query, (err) => {
         if (err) {
           res
@@ -49,13 +61,7 @@ module.exports = router.post(
     } catch (e) {
       res
         .status(500)
-        .send(
-          response.responseError(
-            '500',
-            'SERVER ERROR',
-            'Please Wait Server Error',
-          ),
-        );
+        .send(response.responseError('500', 'SERVER ERROR', { e }));
     }
   },
 );
