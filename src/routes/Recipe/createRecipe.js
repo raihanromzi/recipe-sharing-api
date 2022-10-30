@@ -25,6 +25,7 @@ module.exports = router.post(
   (req, res) => {
     // if username not exist throw response error
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       res
         .status(400)
@@ -36,10 +37,12 @@ module.exports = router.post(
       const { username } = req.params;
       const { title, description, cookTime, ingredients, stepByStep } =
         req.body;
+
       const query = `INSERT INTO Recipe (Username, Title, Description, Cook_Time, Ingredients, Step_By_Step)
                      VALUES ('${username}', '${title}', '${description}', '${cookTime}',
                              '${JSON.stringify(ingredients)}',
                              '${JSON.stringify(stepByStep)}')`;
+
       db.query(query, (err) => {
         if (err) {
           res

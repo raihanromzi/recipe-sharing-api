@@ -22,6 +22,7 @@ module.exports = router.post('/users', userValidator, (req, res) => {
                    VALUES ('${username}', '${email}', '${password}', '${firstName}', '${lastName}', '${address}',
                            '${bio}',
                            '${phoneNumber}')`;
+
     db.query(query, (err) => {
       if (err) {
         res

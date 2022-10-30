@@ -23,6 +23,7 @@ module.exports = route.delete(
   (req, res) => {
     // if username not exist throw response error
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       res
         .status(400)
@@ -32,9 +33,11 @@ module.exports = route.delete(
 
     try {
       const { username } = req.params;
+
       const query = `DELETE
                      FROM Registered_User
                      WHERE Username = '${username}'`;
+
       db.query(query, (err) => {
         if (err) {
           res

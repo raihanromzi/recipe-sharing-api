@@ -26,6 +26,7 @@ module.exports = router.put(
   async (req, res) => {
     // if username not exist throw response error
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       res
         .status(400)
@@ -36,6 +37,7 @@ module.exports = router.put(
     try {
       const { username } = req.params;
       const { firstName, lastName, address, bio, phoneNumber } = req.body;
+
       const query = `UPDATE Registered_User
                      SET Firstname='${firstName}',
                          Lastname='${lastName}',
@@ -43,6 +45,7 @@ module.exports = router.put(
                          Bio='${bio}',
                          Phone_Number='${phoneNumber}'
                      WHERE Username = '${username}'`;
+
       db.query(query, (err) => {
         if (err) {
           res

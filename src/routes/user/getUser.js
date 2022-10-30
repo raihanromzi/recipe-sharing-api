@@ -6,11 +6,12 @@ const router = express.Router();
 module.exports = router.get('/users/:username', async (req, res) => {
   try {
     const { username } = req.params;
+
     const query = `SELECT Username, Email, Firstname, Lastname, Address, Bio
                    FROM Registered_User
                    WHERE Username = '${username}'`;
-    const results = await db.promise().query(query);
 
+    const results = await db.promise().query(query);
     if (results[0].length === 0) {
       res
         .status(404)

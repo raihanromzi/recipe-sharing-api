@@ -12,6 +12,7 @@ const createRecipe = require('./routes/Recipe/createRecipe');
 const deleteUser = require('./routes/user/deleteUser');
 const getAllRecipesUser = require('./routes/Recipe/getAllRecipesUser');
 const updateUser = require('./routes/user/updateUser');
+const updateRecipe = require('./routes/Recipe/updateRecipe');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -27,5 +28,6 @@ app.use('/api/v1/', createRecipe);
 app.use('/api/v1/', deleteUser);
 app.use('/api/v1/', getAllRecipesUser);
 app.use('/api/v1/', updateUser);
+app.use('/api/v1/', updateRecipe);
 
 module.exports = app;

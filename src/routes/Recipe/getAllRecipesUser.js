@@ -24,6 +24,7 @@ module.exports = router.get(
   async (req, res) => {
     // if username not exist throw response error
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       res
         .status(400)
@@ -33,9 +34,11 @@ module.exports = router.get(
 
     try {
       const { username } = req.params;
+
       const query = `SELECT *
                      FROM Recipe
                      WHERE Username = '${username}'`;
+
       const results = await db.promise().query(query);
       if (results[0].length === 0) {
         res
