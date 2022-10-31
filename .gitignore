@@ -2,9 +2,6 @@
 # Logs
 logs
 .idea
-src/v1/.env
-src/v1/
-
 src/config/.idea
 src/.idea
 src/.env
