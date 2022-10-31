@@ -5,14 +5,14 @@ const path = require('path');
 
 const app = express();
 const welcomeAPIRouter = require('./routes/home/welcome-api');
-const createUser = require('./routes/user/createUser');
+const createUser = require('./routes/user/postUser');
 const getAllUsers = require('./routes/user/getAllUsers');
 const getUser = require('./routes/user/getUser');
-const createRecipe = require('./routes/Recipe/createRecipe');
+const createRecipe = require('./routes/Recipe/postRecipe');
 const deleteUser = require('./routes/user/deleteUser');
 const getAllRecipesUser = require('./routes/Recipe/getAllRecipesUser');
-const updateUser = require('./routes/user/updateUser');
-const updateRecipe = require('./routes/Recipe/updateRecipe');
+const updateUser = require('./routes/user/putUser');
+const updateRecipe = require('./routes/Recipe/putRecipe');
 const deleteRecipe = require('./routes/Recipe/deleteRecipe');
 const getAllRecipes = require('./routes/Recipe/getAllRecipes');
 
