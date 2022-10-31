@@ -4,7 +4,7 @@
   "private": true,
   "author": "Raihan Romzi R",
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "nodemon bin/www",
     "lint": "eslint app.js"
   },
   "dependencies": {

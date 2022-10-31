@@ -2,11 +2,11 @@
 # Logs
 logs
 .idea
-src/config/.idea
-src/.idea
-src/.env
-src/.eslintrc.js
-src/.prettierrc
+src/v1/config/.idea
+src/v1/.idea
+src/v1/.env
+src/v1/.eslintrc.js
+src/v1/.prettierrc
 *.log
 npm-debug.log*
 yarn-debug.log*
