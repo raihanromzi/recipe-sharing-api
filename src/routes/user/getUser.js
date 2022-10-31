@@ -8,7 +8,7 @@ module.exports = router.get('/users/:username', async (req, res) => {
     const { username } = req.params;
 
     const query = `SELECT Username, Email, Firstname, Lastname, Address, Bio
-                   FROM Registered_User
+                   FROM Users
                    WHERE Username = '${username}'`;
 
     const results = await db.promise().query(query);

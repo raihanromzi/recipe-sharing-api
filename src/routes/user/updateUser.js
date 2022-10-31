@@ -15,7 +15,7 @@ module.exports = router.put(
     .exists()
     .custom(async (username) => {
       const query = `SELECT COUNT(*)
-                     FROM Registered_User
+                     FROM Users
                      WHERE Username = '${username}'`;
       const result = await db.promise().query(query);
       if (result[0][0]['COUNT(*)'] === 0) {
@@ -38,7 +38,7 @@ module.exports = router.put(
       const { username } = req.params;
       const { firstName, lastName, address, bio, phoneNumber } = req.body;
 
-      const query = `UPDATE Registered_User
+      const query = `UPDATE Users
                      SET Firstname='${firstName}',
                          Lastname='${lastName}',
                          Address='${address}',

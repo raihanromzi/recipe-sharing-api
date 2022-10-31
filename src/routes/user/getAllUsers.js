@@ -7,7 +7,7 @@ const router = express.Router();
 module.exports = router.get('/users', async (req, res) => {
   try {
     const query = `SELECT *
-                   FROM Registered_User`;
+                   FROM Users`;
 
     const results = await db.promise().query(query);
     if (results[0].length === 0) {

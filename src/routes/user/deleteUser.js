@@ -12,7 +12,7 @@ module.exports = route.delete(
     .exists()
     .custom(async (username) => {
       const query = `SELECT COUNT(*)
-                     FROM Registered_User
+                     FROM Users
                      WHERE Username = '${username}'`;
       const result = await db.promise().query(query);
       if (result[0][0]['COUNT(*)'] === 0) {
@@ -35,7 +35,7 @@ module.exports = route.delete(
       const { username } = req.params;
 
       const query = `DELETE
-                     FROM Registered_User
+                     FROM Users
                      WHERE Username = '${username}'`;
 
       db.query(query, (err) => {

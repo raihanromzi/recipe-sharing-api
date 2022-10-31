@@ -13,7 +13,7 @@ module.exports = router.get(
     .exists()
     .custom(async (username) => {
       const query = `SELECT COUNT(*)
-                     FROM Registered_User
+                     FROM Users
                      WHERE Username = '${username}'`;
       const result = await db.promise().query(query);
       if (result[0][0]['COUNT(*)'] === 0) {
@@ -36,7 +36,7 @@ module.exports = router.get(
       const { username } = req.params;
 
       const query = `SELECT *
-                     FROM Recipe
+                     FROM Recipes
                      WHERE Username = '${username}'`;
 
       const results = await db.promise().query(query);

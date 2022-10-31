@@ -12,7 +12,7 @@ module.exports = app.use(
     .isString()
     .custom(async (username) => {
       const query = `SELECT COUNT(*)
-                     FROM Registered_User
+                     FROM Users
                      WHERE Username = '${username}'`;
       const result = await db.promise().query(query);
       if (result[0][0]['COUNT(*)'] !== 0) {
@@ -26,7 +26,7 @@ module.exports = app.use(
     .normalizeEmail()
     .custom(async (email) => {
       const query = `SELECT COUNT(*)
-                     FROM Registered_User
+                     FROM Users
                      WHERE Email = '${email}'`;
       const result = await db.promise().query(query);
       if (result[0][0]['COUNT(*)'] !== 0) {
@@ -82,5 +82,5 @@ module.exports = app.use(
       return;
     }
     next();
-  },
+  }
 );

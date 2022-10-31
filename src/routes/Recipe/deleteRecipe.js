@@ -12,7 +12,7 @@ module.exports = router.delete(
     .exists()
     .custom(async (username) => {
       const query = `SELECT COUNT(*)
-                     FROM Registered_User
+                     FROM Users
                      WHERE Username = '${username}'`;
       const result = await db.promise().query(query);
       if (result[0][0]['COUNT(*)'] === 0) {
@@ -25,7 +25,7 @@ module.exports = router.delete(
     .exists()
     .custom(async (recipeId) => {
       const query = `SELECT COUNT(*)
-                     FROM Recipe
+                     FROM Recipes
                      WHERE RecipeID = '${recipeId}'`;
       const result = await db.promise().query(query);
       if (result[0][0]['COUNT(*)'] === 0) {
@@ -46,7 +46,7 @@ module.exports = router.delete(
     try {
       const { username, recipeId } = req.params;
       const query = `DELETE
-                     FROM Recipe
+                     FROM Recipes
                      WHERE Username = '${username}'
                        AND RecipeID = '${recipeId}'`;
       db.query(query, (err) => {

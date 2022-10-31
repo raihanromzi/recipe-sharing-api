@@ -14,7 +14,7 @@ module.exports = router.post(
     .exists()
     .custom(async (username) => {
       const query = `SELECT COUNT(*)
-                     FROM Registered_User
+                     FROM Users
                      WHERE Username = '${username}'`;
       const result = await db.promise().query(query);
       if (result[0][0]['COUNT(*)'] === 0) {
@@ -38,7 +38,7 @@ module.exports = router.post(
       const { title, description, cookTime, ingredients, stepByStep } =
         req.body;
 
-      const query = `INSERT INTO Recipe (Username, Title, Description, Cook_Time, Ingredients, Step_By_Step)
+      const query = `INSERT INTO Recipes (Username, Title, Description, Cook_Time, Ingredients, Step_By_Step)
                      VALUES ('${username}', '${title}', '${description}', '${cookTime}',
                              '${JSON.stringify(ingredients)}',
                              '${JSON.stringify(stepByStep)}')`;

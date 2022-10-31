@@ -14,6 +14,7 @@ const getAllRecipesUser = require('./routes/Recipe/getAllRecipesUser');
 const updateUser = require('./routes/user/updateUser');
 const updateRecipe = require('./routes/Recipe/updateRecipe');
 const deleteRecipe = require('./routes/Recipe/deleteRecipe');
+const getAllRecipes = require('./routes/Recipe/getAllRecipes');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use('/api/v1/', deleteUser);
 app.use('/api/v1/', getAllRecipesUser);
 app.use('/api/v1/', updateUser);
 app.use('/api/v1/', updateRecipe);
-app.use('/api/v1', deleteRecipe);
+app.use('/api/v1/', deleteRecipe);
+app.use('/api/v1/', getAllRecipes);
 
 module.exports = app;

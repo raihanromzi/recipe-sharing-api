@@ -15,7 +15,7 @@ module.exports = router.put(
     .exists()
     .custom(async (username) => {
       const query = `SELECT COUNT(*)
-                     FROM Registered_User
+                     FROM Users
                      WHERE Username = '${username}'`;
       const result = await db.promise().query(query);
       if (result[0][0]['COUNT(*)'] === 0) {
@@ -28,7 +28,7 @@ module.exports = router.put(
     .exists()
     .custom(async (recipeId) => {
       const query = `SELECT COUNT(*)
-                     FROM Recipe
+                     FROM Recipes
                      WHERE RecipeID = '${recipeId}'`;
       const result = await db.promise().query(query);
       if (result[0][0]['COUNT(*)'] === 0) {
@@ -51,7 +51,7 @@ module.exports = router.put(
       const { title, description, cookTime, ingredients, stepByStep } =
         req.body;
 
-      const query = `UPDATE Recipe
+      const query = `UPDATE Recipes
                      SET Title='${title}',
                          Description='${description}',
                          Cook_Time=${cookTime},

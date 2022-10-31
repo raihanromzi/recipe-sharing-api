@@ -17,8 +17,8 @@ module.exports = router.post('/users', userValidator, (req, res) => {
       phoneNumber,
     } = req.body;
 
-    const query = `INSERT INTO Registered_User (Username, Email, Password, FirstName, LastName, Address, Bio,
-                                                Phone_Number)
+    const query = `INSERT INTO Users (Username, Email, Password, FirstName, LastName, Address, Bio,
+                                      Phone_Number)
                    VALUES ('${username}', '${email}', '${password}', '${firstName}', '${lastName}', '${address}',
                            '${bio}',
                            '${phoneNumber}')`;
