@@ -44,7 +44,7 @@ module.exports = router.get(
         res
           .status(404)
           .send(
-            response.responseError('404', ' NOT_FOUND', 'Recipe Not Found'),
+            response.responseError('404', ' NOT_FOUND', 'Recipe Not Found')
           );
         return;
       }
@@ -55,5 +55,5 @@ module.exports = router.get(
         .status(500)
         .send(response.responseError('500', 'SERVER ERROR', { e }));
     }
-  },
+  }
 );
