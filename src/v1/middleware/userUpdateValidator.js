@@ -47,5 +47,5 @@ module.exports = app.use(
       return;
     }
     next();
-  },
+  }
 );
