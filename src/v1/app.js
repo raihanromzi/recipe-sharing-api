@@ -18,6 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', welcomeAPIRouter);
 app.use('/', login);
+
 app.use(jwt);
 app.use('/api/v1/', v1UserRouter);
 app.use('/api/v1/', v1RecipeRouter);

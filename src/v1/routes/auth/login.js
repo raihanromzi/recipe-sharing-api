@@ -2,24 +2,36 @@ require('dotenv').config();
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const response = require('../../utils/response');
-const db = require('../../config/db');
 
 const router = express.Router();
 
-router.post('/login', async (req, res) => {
+router.get('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    const sqlQuery = `SELECT *
-                      FROM Users
-                      WHERE Username = '${username}'`;
-    const result = await db.promise().query(sqlQuery);
-
-    if (result[0].length === 0) {
+    if (username === undefined || password === undefined) {
       res
-        .status(404)
-        .send(response.responseError('404', ' NOT_FOUND', 'User Not Found'));
-      return;
+        .status(400)
+        .send(
+          response.responseError(
+            400,
+            'BAD_REQUEST',
+            'Invalid Username or Password!'
+          )
+        );
+    } else if (
+      username !== process.env.USERNAME_ADMIN ||
+      password !== process.env.PASSWORD_ADMIN
+    ) {
+      res
+        .status(400)
+        .send(
+          response.responseError(
+            400,
+            'BAD_REQUEST',
+            'Invalid Username or Password!'
+          )
+        );
     }
 
     // Authenticate User
