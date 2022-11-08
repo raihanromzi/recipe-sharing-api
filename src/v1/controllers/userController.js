@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
 const response = require('../utils/response');
 const db = require('../config/db');
 
@@ -18,7 +19,11 @@ const deleteUser = (req, res) => {
                    WHERE Username = '${username}'`;
 
     db.query(query, (err) => {
-      if (!err) {
+      if (err) {
+        res
+          .status(500)
+          .send(response.responseError('500', 'SERVER ERROR', { err }));
+      } else {
         res
           .status(200)
           .send(response.responseSuccess('200', 'OK', 'Success Delete User'));
@@ -69,7 +74,7 @@ const getUser = async (req, res) => {
   }
 };
 
-const postUser = (req, res) => {
+const postUser = async (req, res) => {
   try {
     const {
       username,
@@ -82,14 +87,21 @@ const postUser = (req, res) => {
       phoneNumber,
     } = req.body;
 
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const query = `INSERT INTO Users (Username, Email, Password, FirstName, LastName, Address, Bio,
                                       Phone_Number)
-                   VALUES ('${username}', '${email}', '${password}', '${firstName}', '${lastName}', '${address}',
+                   VALUES ('${username}', '${email}', '${hashedPassword}', '${firstName}', '${lastName}', '${address}',
                            '${bio}',
                            '${phoneNumber}')`;
 
     db.query(query, (err) => {
-      if (!err) {
+      if (err) {
+        res
+          .status(500)
+          .send(response.responseError('500', 'SERVER ERROR', { err }));
+      } else {
         res.status(201).send(
           response.responseSuccess(201, 'CREATED', {
             username,
@@ -131,7 +143,11 @@ const putUser = (req, res) => {
                    WHERE Username = '${username}'`;
 
     db.query(query, (err) => {
-      if (!err) {
+      if (err) {
+        res
+          .status(500)
+          .send(response.responseError('500', 'SERVER ERROR', { err }));
+      } else {
         res
           .status(200)
           .send(response.responseSuccess('200', 'OK', 'User updated'));

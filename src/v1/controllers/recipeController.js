@@ -21,7 +21,11 @@ const postRecipe = (req, res) => {
                            '${JSON.stringify(stepByStep)}')`;
 
     db.query(query, (err) => {
-      if (!err) {
+      if (err) {
+        res
+          .status(500)
+          .send(response.responseError('500', 'SERVER ERROR', { err }));
+      } else {
         res.status(201).send(
           response.responseSuccess(201, 'CREATED', {
             username,
@@ -55,7 +59,11 @@ const deleteRecipe = (req, res) => {
                    WHERE Username = '${username}'
                      AND RecipeID = '${recipeId}'`;
     db.query(query, (err) => {
-      if (!err) {
+      if (err) {
+        res
+          .status(500)
+          .send(response.responseError('500', 'SERVER ERROR', { err }));
+      } else {
         res
           .status(200)
           .send(response.responseSuccess('200', 'OK', 'Success Delete Recipe'));
@@ -170,7 +178,11 @@ const putRecipe = (req, res) => {
                      AND RecipeID = '${recipeId}'`;
 
     db.query(query, (err) => {
-      if (!err) {
+      if (err) {
+        res
+          .status(500)
+          .send(response.responseError('500', 'SERVER ERROR', { err }));
+      } else {
         res
           .status(200)
           .send(response.responseSuccess('200', 'OK', 'Recipe updated'));
