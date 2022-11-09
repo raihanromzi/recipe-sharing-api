@@ -1,12 +1,9 @@
-# fly.toml file generated for recipe-sharing on 2022-11-09T09:52:35+07:00
+# fly.toml file generated for recipe-sharing on 2022-11-09T20:16:35+07:00
 
 app = "recipe-sharing"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
-
-[build]
-builder = "heroku/buildpacks:20"
 
 [env]
 PORT = "8080"
@@ -15,15 +12,14 @@ DB_USERNAME = "root"
 DB_PASSWORD = "Rr290903123@"
 DB_NAME = "recipe_db"
 DB_DIALECT = "mysql"
-DATABASE_URL = 'mysql://qlnj5of519rhuux90wly:pscale_pw_MlIuigobhEF45AUKu7ofzbT1deNeWV3d046ldPn74G6@ap-southeast.connect.psdb.cloud/recipe_db?ssl={"rejectUnauthorized":true}'
 ACCESS_KEY = "6f802aaf08d183c5432a990d9539c9229f5f96f5be2f5ef84a5d74bd360d911863b1732e34632f2f7e4ba5556ed6f143e2bf020f4b70a560f28fce53789d3968"
 USERNAME_ADMIN = "admin"
 PASSWORD_ADMIN = "admin123"
+DATABASE_URL = 'mysql://qlnj5of519rhuux90wly:pscale_pw_MlIuigobhEF45AUKu7ofzbT1deNeWV3d046ldPn74G6@ap-southeast.connect.psdb.cloud/recipe_db?ssl={"rejectUnauthorized":true}'
 
 [experimental]
 allowed_public_ports = []
 auto_rollback = true
-cmd = "node bin/www.js"
 
 [[services]]
 http_checks = []
