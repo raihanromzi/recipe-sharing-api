@@ -5,7 +5,8 @@
   "author": "Raihan Romzi R",
   "scripts": {
     "start": "nodemon bin/www",
-    "lint": "eslint app.js"
+    "lint": "eslint app.js",
+    "build": "node bin/www"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
