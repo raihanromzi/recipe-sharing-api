@@ -1,38 +1,12 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const response = require('../utils/response');
-const db = require('../config/db');
 
 const app = express();
 
 module.exports = app.use(
-  body('username')
-    .exists()
-    .isLength({ min: 3, max: 16 })
-    .isString()
-    .custom(async (username) => {
-      const query = `SELECT COUNT(*)
-                     FROM Users
-                     WHERE Username = '${username}'`;
-      const result = await db.promise().query(query);
-      if (result[0][0]['COUNT(*)'] !== 0) {
-        throw new Error('Username already in use');
-      }
-    }),
-  body('email')
-    .exists()
-    .isString()
-    .isEmail()
-    .normalizeEmail()
-    .custom(async (email) => {
-      const query = `SELECT COUNT(*)
-                     FROM Users
-                     WHERE Email = '${email}'`;
-      const result = await db.promise().query(query);
-      if (result[0][0]['COUNT(*)'] !== 0) {
-        throw new Error('Email already in use');
-      }
-    }),
+  body('username').exists().isLength({ min: 3, max: 16 }).isString(),
+  body('email').exists().isString().isEmail().normalizeEmail(),
   body('password')
     .exists()
     .isLength({

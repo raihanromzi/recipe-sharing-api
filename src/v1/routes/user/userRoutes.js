@@ -1,5 +1,5 @@
 const express = require('express');
-const { param } = require('express-validator');
+const { param, body } = require('express-validator');
 const db = require('../../config/db');
 const userController = require('../../controllers/userController');
 const userValidator = require('../../middleware/userValidator');
@@ -34,7 +34,12 @@ router.get('/users', userController.getAllUsers);
 router.get('/users/:username', userController.getUser);
 
 // Create User
-router.post('/users', userValidator, userController.postUser);
+router.post(
+  '/users',
+
+  userValidator,
+  userController.postUser
+);
 
 // Update User Information
 router.put(
