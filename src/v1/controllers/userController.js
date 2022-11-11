@@ -3,16 +3,24 @@ const bcrypt = require('bcrypt');
 const response = require('../utils/response');
 const db = require('../config/db');
 
-const deleteUser = (req, res) => {
-  // if username not exist throw response error
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    res.status(400).send(response.responseError('400 ', 'BAD_REQUEST', errors));
-  }
-
+const deleteUser = async (req, res) => {
   try {
     const { username } = req.params;
+
+    const queryUsername = `SELECT *
+                           FROM Users
+                           WHERE Username = '${username}'`;
+
+    const result = await db.promise().query(queryUsername);
+
+    if (result[0].length === 0) {
+      res
+        .status(404)
+        .send(
+          response.responseError('404', ' NOT_FOUND', 'Username Not Found')
+        );
+      return;
+    }
 
     const query = `DELETE
                    FROM Users
@@ -57,6 +65,21 @@ const getUser = async (req, res) => {
   try {
     const { username } = req.params;
 
+    const queryUsername = `SELECT *
+                           FROM Users
+                           WHERE Username = '${username}'`;
+
+    const result = await db.promise().query(queryUsername);
+
+    if (result[0].length === 0) {
+      res
+        .status(404)
+        .send(
+          response.responseError('404', ' NOT_FOUND', 'Username Not Found')
+        );
+      return;
+    }
+
     const query = `SELECT Username, Email, Firstname, Lastname, Address, Bio
                    FROM Users
                    WHERE Username = '${username}'`;
@@ -86,6 +109,37 @@ const postUser = async (req, res) => {
       bio,
       phoneNumber,
     } = req.body;
+
+    // Username, Email Validation
+    const queryUsername = `SELECT COUNT(*)
+                           FROM Users
+                           WHERE Username = '${username}'`;
+    const resultUsername = await db.promise().query(queryUsername);
+    if (resultUsername[0][0]['count(*)'] !== 0) {
+      res
+        .status(400)
+        .send(
+          response.responseError(
+            '400 ',
+            'BAD_REQUEST',
+            'Username Already In Usee'
+          )
+        );
+      return;
+    }
+
+    const queryEmail = `SELECT COUNT(*)
+                        FROM Users
+                        WHERE Email = '${email}'`;
+    const resultEmail = await db.promise().query(queryEmail);
+    if (resultEmail[0][0]['count(*)'] !== 0) {
+      res
+        .status(400)
+        .send(
+          response.responseError('400 ', 'BAD_REQUEST', 'Email Already In Use')
+        );
+      return;
+    }
 
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -121,18 +175,25 @@ const postUser = async (req, res) => {
   }
 };
 
-const putUser = (req, res) => {
-  // if username not exist throw response error
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    res.status(400).send(response.responseError('400 ', 'BAD_REQUEST', errors));
-    return;
-  }
-
+const putUser = async (req, res) => {
   try {
     const { username } = req.params;
     const { firstName, lastName, address, bio, phoneNumber } = req.body;
+
+    const queryUsername = `SELECT *
+                           FROM Users
+                           WHERE Username = '${username}'`;
+
+    const result = await db.promise().query(queryUsername);
+
+    if (result[0].length === 0) {
+      res
+        .status(404)
+        .send(
+          response.responseError('404', ' NOT_FOUND', 'Username Not Found')
+        );
+      return;
+    }
 
     const query = `UPDATE Users
                    SET Firstname='${firstName}',

@@ -36,6 +36,7 @@ require('dotenv').config();
  * Get port from environment and store in Express.
  */
 
+// eslint-disable-next-line no-use-before-define
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
@@ -50,7 +51,9 @@ const server = http.createServer(app);
  */
 
 server.listen(port);
+// eslint-disable-next-line no-use-before-define
 server.on('error', onError);
+// eslint-disable-next-line no-use-before-define
 server.on('listening', onListening);
 
 /**
@@ -58,8 +61,10 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val) {
+  // eslint-disable-next-line no-shadow
   const port = parseInt(val, 10);
 
+  // eslint-disable-next-line no-restricted-globals
   if (isNaN(port)) {
     // named pipe
     return val;
@@ -87,10 +92,12 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
+      // eslint-disable-next-line no-console
       console.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
+      // eslint-disable-next-line no-console
       console.error(`${bind} is already in use`);
       process.exit(1);
       break;
