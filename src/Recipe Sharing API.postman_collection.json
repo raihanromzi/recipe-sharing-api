@@ -1,0 +1,848 @@
+{
+	"info": {
+		"_postman_id": "a0cfbfbc-08e9-4fbc-b256-2877d16d90fc",
+		"name": "Recipe Sharing API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18240795"
+	},
+	"item": [
+		{
+			"name": "Create New User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2Nzk1OTIzOH0.nA5hCwF7ijspv87RnyJHXD22qbWxyC28KNobc6iKvzM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"raihanromzi\",\n    \"email\": \"raihan.rakhman16@gmail.com\",\n    \"password\": \"1234567890\",\n    \"firstName\": \"Raihan\",\n    \"lastName\": \"Rakhman\",\n    \"address\": \"Jl. Palem Raya No.21, Bandung\",\n    \"bio\":\"Manusia biasa\",\n    \"phoneNumber\":\"081234567890\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2NzgxNTMzMX0.19DB_eKKstAbBh3FJdD0VX2m4BLLlf3Daboz-Uxoxkk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2NzgxNTMzMX0.19DB_eKKstAbBh3FJdD0VX2m4BLLlf3Daboz-Uxoxkk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/users/raihanromzi",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Recipe",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Udang Saos Teriyaki\",\n    \"description\": \"Makanan khas rumah makan\",\n    \"cookTime\": \"5\",\n    \"ingredients\": {\n        \"1\": \"Masak udang\",\n        \"2\": \"Masak air\"\n    },\n    \"stepByStep\": {\n        \"1\": \"Masak udang\",\n        \"2\": \"Masak air\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/users/raihanromzi/recipes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi",
+						"recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/users/raihanromzi",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recipe Created by User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/users/raihanromzi/recipes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi",
+						"recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Information",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2Nzk1OTIzOH0.nA5hCwF7ijspv87RnyJHXD22qbWxyC28KNobc6iKvzM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Raihan\",\n    \"lastName\": \"Romzi\",\n    \"address\": \"Jl. Palem Raya No.21, Bandung\",\n    \"bio\":\"Manusia biasa\",\n    \"phoneNumber\":\"081234567890\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/users/raihanromzi",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Recipe",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Cumi Saos Teriyaki\",\n    \"description\": \"Makanan khas rumah makan\",\n    \"cookTime\": \"5\",\n    \"ingredients\": {\n        \"1\": \"Masak udang\",\n        \"2\": \"Masak air\"\n    },\n    \"stepByStep\": {\n        \"1\": \"Masak udang\",\n        \"2\": \"Masak air\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/users/raihanromzi/recipes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi",
+						"recipes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Recipe",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/users/raihanromzi/recipes/8",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi",
+						"recipes",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Recipes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/recipes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Recipe",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/users/raihanromzi/recipes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi",
+						"recipes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Deploy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/login",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New User Deploy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODE4NDY4Nn0.biWw-3jvo10UJTwJaW7jYmTyIPkLgEDzEir4ycAFt-U",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"raihanromzi\",\n    \"email\": \"raihan.rakhman16@gmail.com\",\n    \"password\": \"1234567890\",\n    \"firstName\": \"Raihan\",\n    \"lastName\": \"Rakhman\",\n    \"address\": \"Jl. Palem Raya No.21, Bandung\",\n    \"bio\":\"Manusia biasa\",\n    \"phoneNumber\":\"081234567890\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/api/v1/users",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All User Deploy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/api/v1/users",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One User Deploy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/api/v1/users/raihanromzi",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Information Deploy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Raihan\",\n    \"lastName\": \"Romzi\",\n    \"address\": \"Jl. Palem Raya No.21, Bandung\",\n    \"bio\":\"Manusia biasa\",\n    \"phoneNumber\":\"081234567890\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/api/v1/users/raihanromzi",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User Deploy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/api/v1/users/raihanromzi",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Recipe Deploy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Udang Saos Teriyaki\",\n    \"description\": \"Makanan khas rumah makan\",\n    \"cookTime\": \"5\",\n    \"ingredients\": {\n        \"1\": \"Masak udang\",\n        \"2\": \"Masak air\"\n    },\n    \"stepByStep\": {\n        \"1\": \"Masak udang\",\n        \"2\": \"Masak air\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/api/v1/users/raihanromzi/recipes",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi",
+						"recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recipe Created by User Deploy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/api/v1/users/raihanromzi/recipes",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi",
+						"recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Recipe Deploy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Ikan Saos Teriyaki\",\n    \"description\": \"Makanan khas rumah makan\",\n    \"cookTime\": \"5\",\n    \"ingredients\": {\n        \"1\": \"Masak udang\",\n        \"2\": \"Masak air\"\n    },\n    \"stepByStep\": {\n        \"1\": \"Masak udang\",\n        \"2\": \"Masak air\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/api/v1/users/raihanromzi/recipes/2",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi",
+						"recipes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Recipe Deploy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/api/v1/users/raihanromzi/recipes/8",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi",
+						"recipes",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Recipes Deploy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/api/v1/recipes",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"api",
+						"v1",
+						"recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Recipe Deploy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjEyMyIsImlhdCI6MTY2ODA2MzUyMH0.HTzMlh8tY-pO_ODwzkVHj4OSDWopQVe2rxVcgu7fReI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://recipe-sharing.fly.dev/api/v1/users/raihanromzi/recipes/1",
+					"protocol": "https",
+					"host": [
+						"recipe-sharing",
+						"fly",
+						"dev"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"raihanromzi",
+						"recipes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
