@@ -1,4 +1,3 @@
-const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const response = require('../utils/response');
 const db = require('../config/db');
@@ -22,11 +21,23 @@ const deleteUser = async (req, res) => {
       return;
     }
 
-    const query = `DELETE
-                   FROM Users
-                   WHERE Username = '${username}'`;
+    const queryDeleteUser = `DELETE
+                             FROM Users
+                             WHERE Username = '${username}'`;
 
-    db.query(query, (err) => {
+    const queryDeleteRecipe = `DELETE
+                               FROM Recipes
+                               WHERE Username = '${username}'`;
+
+    db.query(queryDeleteUser, (err) => {
+      if (err) {
+        res
+          .status(500)
+          .send(response.responseError('500', 'SERVER ERROR', { err }));
+      }
+    });
+
+    db.query(queryDeleteRecipe, (err) => {
       if (err) {
         res
           .status(500)
@@ -122,7 +133,7 @@ const postUser = async (req, res) => {
           response.responseError(
             '400 ',
             'BAD_REQUEST',
-            'Username Already In Usee'
+            'Username Already In Use'
           )
         );
       return;
