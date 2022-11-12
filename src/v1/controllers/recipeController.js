@@ -1,19 +1,25 @@
-const { validationResult } = require('express-validator');
 const response = require('../utils/response');
 const db = require('../config/db');
 
-const postRecipe = (req, res) => {
-  // if username not exist throw response error
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    res.status(400).send(response.responseError('400 ', 'BAD_REQUEST', errors));
-    return;
-  }
-
+const postRecipe = async (req, res) => {
   try {
     const { username } = req.params;
     const { title, description, cookTime, ingredients, stepByStep } = req.body;
+
+    const queryUsername = `SELECT *
+                           FROM Users
+                           WHERE Username = '${username}'`;
+
+    const result = await db.promise().query(queryUsername);
+
+    if (result[0].length === 0) {
+      res
+        .status(404)
+        .send(
+          response.responseError('404', ' NOT_FOUND', 'Username Not Found')
+        );
+      return;
+    }
 
     const query = `INSERT INTO Recipes (Username, Title, Description, Cook_Time, Ingredients, Step_By_Step)
                    VALUES ('${username}', '${title}', '${description}', '${cookTime}',
@@ -43,17 +49,25 @@ const postRecipe = (req, res) => {
   }
 };
 
-const deleteRecipe = (req, res) => {
-  // if username not exist throw response error
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    res.status(400).send(response.responseError('400 ', 'BAD_REQUEST', errors));
-    return;
-  }
-
+const deleteRecipe = async (req, res) => {
   try {
     const { username, recipeId } = req.params;
+
+    const queryUsername = `SELECT *
+                           FROM Users
+                           WHERE Username = '${username}'`;
+
+    const result = await db.promise().query(queryUsername);
+
+    if (result[0].length === 0) {
+      res
+        .status(404)
+        .send(
+          response.responseError('404', ' NOT_FOUND', 'Username Not Found')
+        );
+      return;
+    }
+
     const query = `DELETE
                    FROM Recipes
                    WHERE Username = '${username}'
@@ -95,16 +109,23 @@ const getAllRecipes = async (req, res) => {
 };
 
 const getAllRecipesUser = async (req, res) => {
-  // if username not exist throw response error
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    res.status(400).send(response.responseError('400 ', 'BAD_REQUEST', errors));
-    return;
-  }
-
   try {
     const { username } = req.params;
+
+    const queryUsername = `SELECT *
+                           FROM Users
+                           WHERE Username = '${username}'`;
+
+    const result = await db.promise().query(queryUsername);
+
+    if (result[0].length === 0) {
+      res
+        .status(404)
+        .send(
+          response.responseError('404', ' NOT_FOUND', 'Username Not Found')
+        );
+      return;
+    }
 
     const query = `SELECT *
                    FROM Recipes
@@ -125,16 +146,38 @@ const getAllRecipesUser = async (req, res) => {
 };
 
 const getSpecificRecipeUser = async (req, res) => {
-  // if username not exist throw response error
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    res.status(400).send(response.responseError('400 ', 'BAD_REQUEST', errors));
-    return;
-  }
-
   try {
     const { username, recipeId } = req.params;
+
+    const queryUsername = `SELECT *
+                           FROM Users
+                           WHERE Username = '${username}'`;
+
+    const resultUsername = await db.promise().query(queryUsername);
+
+    if (resultUsername[0].length === 0) {
+      res
+        .status(404)
+        .send(
+          response.responseError('404', ' NOT_FOUND', 'Username Not Found')
+        );
+      return;
+    }
+
+    const queryRecipeID = `SELECT *
+                           FROM Users
+                           WHERE Username = '${username}'`;
+
+    const resultQueryID = await db.promise().query(queryRecipeID);
+
+    if (resultQueryID[0].length === 0) {
+      res
+        .status(404)
+        .send(
+          response.responseError('404', ' NOT_FOUND', 'Username Not Found')
+        );
+      return;
+    }
 
     const query = `SELECT *
                    FROM Recipes
@@ -155,18 +198,38 @@ const getSpecificRecipeUser = async (req, res) => {
   }
 };
 
-const putRecipe = (req, res) => {
-  // if username not exist throw response error
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    res.status(400).send(response.responseError('400 ', 'BAD_REQUEST', errors));
-    return;
-  }
-
+const putRecipe = async (req, res) => {
   try {
     const { username, recipeId } = req.params;
     const { title, description, cookTime, ingredients, stepByStep } = req.body;
+
+    const queryUsername = `SELECT *
+                           FROM Users
+                           WHERE Username = '${username}'`;
+
+    const resultUsername = await db.promise().query(queryUsername);
+
+    if (resultUsername[0].length === 0) {
+      res
+        .status(404)
+        .send(
+          response.responseError('404', ' NOT_FOUND', 'Username Not Found')
+        );
+      return;
+    }
+
+    const queryRecipeID = `SELECT *
+                           FROM Recipes
+                           WHERE RecipeID = '${recipeId}'`;
+
+    const resultQueryID = await db.promise().query(queryRecipeID);
+
+    if (resultQueryID[0].length === 0) {
+      res
+        .status(404)
+        .send(response.responseError('404', ' NOT_FOUND', 'Recipe Not Found'));
+      return;
+    }
 
     const query = `UPDATE Recipes
                    SET Title='${title}',

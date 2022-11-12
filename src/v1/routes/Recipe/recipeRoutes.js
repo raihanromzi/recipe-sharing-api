@@ -26,7 +26,6 @@ router.get('/users/:username/recipes', recipeController.getAllRecipesUser);
 // Get Specific Recipe
 router.get(
   '/users/:username/recipes/:recipeId',
-
   recipeController.getSpecificRecipeUser
 );
 
@@ -34,7 +33,6 @@ router.get(
 router.put(
   '/users/:username/recipes/:recipeId',
   recipeValidator,
-
   recipeController.putRecipe
 );
 

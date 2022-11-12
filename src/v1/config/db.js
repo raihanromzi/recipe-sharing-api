@@ -8,4 +8,5 @@ const mysql = require('mysql2');
 //   database: process.env.DB_NAME,
 // });
 
+// Planet Scale
 module.exports = mysql.createConnection(process.env.DATABASE_URL);

@@ -111,11 +111,11 @@ const postUser = async (req, res) => {
     } = req.body;
 
     // Username, Email Validation
-    const queryUsername = `SELECT COUNT(*)
+    const queryUsername = `SELECT *
                            FROM Users
                            WHERE Username = '${username}'`;
     const resultUsername = await db.promise().query(queryUsername);
-    if (resultUsername[0][0]['count(*)'] !== 0) {
+    if (resultUsername[0].length !== 0) {
       res
         .status(400)
         .send(
@@ -128,11 +128,11 @@ const postUser = async (req, res) => {
       return;
     }
 
-    const queryEmail = `SELECT COUNT(*)
+    const queryEmail = `SELECT *
                         FROM Users
                         WHERE Email = '${email}'`;
     const resultEmail = await db.promise().query(queryEmail);
-    if (resultEmail[0][0]['count(*)'] !== 0) {
+    if (resultEmail[0].length !== 0) {
       res
         .status(400)
         .send(
